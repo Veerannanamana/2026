@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year 2026</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+        height:100vh;
+        background: linear-gradient(180deg,#0f2027,#203a43,#2c5364);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        color:#fff;
+        overflow:hidden;
+    }
+
+    .container{
+        width:100%;
+        max-width:380px;
+        padding:20px;
+        text-align:center;
+    }
+
+    .card{
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border-radius:20px;
+        padding:25px 20px;
+        box-shadow:0 0 30px rgba(0,0,0,0.4);
+        animation: fadeIn 1.2s ease;
+    }
+
+    h1{
+        font-size:26px;
+        margin-bottom:10px;
+    }
+
+    .year{
+        font-size:34px;
+        font-weight:bold;
+        color:#ffd700;
+        margin-bottom:15px;
+    }
+    input{
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        outline:none;
+        font-size:16px;
+        margin-bottom:15px;
+        text-align:center;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:#ffd700;
+        border:none;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:bold;
+        cursor:pointer;
+        color:#000;
+    }
+
+    button:hover{
+        background:#ffcc00;
+    }
+
+    .wish{
+        display:none;
+        margin-top:20px;
+        animation: zoomIn 1s ease;
+    }
+
+    .wish h2{
+        font-size:24px;
+        margin-bottom:10px;
+    }
+
+    .wish p{
+        font-size:16px;
+        line-height:1.5;
+    }
+
+    .firework{
+        position:absolute;
+        width:6px;
+        height:6px;
+        background:#fff;
+        border-radius:50%;
+        animation: spark 2s infinite ease-in-out;
+    }
+
+    @keyframes fadeIn{
+        from{opacity:0; transform:translateY(20px);}
+        to{opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes zoomIn{
+        from{transform:scale(0.6); opacity:0;}
+        to{transform:scale(1); opacity:1;}
+    }
+
+    @keyframes spark{
+        0%{transform:scale(0); opacity:1;}
+        100%{transform:scale(3); opacity:0;}
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1>🎆 Happy New Year 🎆</h1>
+        <div class="year">2026</div>
+        <input type="text" id="name" placeholder="Enter your nick name">
+
+        <button onclick="showWish()">🎉 Open Wish</button>
+
+        <div class="wish" id="wishBox">
+            <h2>✨ Happy New Year, <span id="userName"></span> ✨</h2>
+            <p>
+                May 2026 bring you<br>
+                🌟 Success<br>
+                ❤️ Happiness<br>
+                💪 Health<br>
+                🚀 New Opportunities
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showWish(){
+        let name = document.getElementById("name").value.trim();
+        if(name === ""){
+            alert("Please enter your nick name 😊");
+            return;
+        }
+        document.getElementById("userName").innerText = name;
+        document.getElementById("wishBox").style.display = "block";
+        createFireworks();
+    }
+
+    function createFireworks(){
+        for(let i=0;i<25;i++){
+            let spark = document.createElement("div");
+            spark.classList.add("firework");
+            spark.style.left = Math.random()*100 + "%";
+            spark.style.top = Math.random()*100 + "%";
+            spark.style.background = `hsl(${Math.random()*360},100%,70%)`;
+            document.body.appendChild(spark);
+
+            setTimeout(()=>{
+                spark.remove();
+            },2000);
+        }
+    }
+</script>
+
+</body>
+</html>
